@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import Cookies from 'js-cookie';
 import cart from './cart';
 import { Store } from '../utils/Store';
+import { Router, useRouter } from 'next/router';
 
 export default function ShippingScreen() {
   const {
@@ -17,6 +18,7 @@ export default function ShippingScreen() {
   const { state, dispatch } = useContext(Store);
   const { cart } = state;
   const { shippingAddress } = cart;
+  const router = useRouter();
 
   useEffect(() => {
     setValue('fullName', shippingAddress.fullName);
@@ -44,6 +46,7 @@ export default function ShippingScreen() {
         },
       })
     );
+    router.push('/payment');
   };
   return (
     <Layout title="Shipping Address">
@@ -125,9 +128,10 @@ export default function ShippingScreen() {
           )}
         </div>
         <div className="mb-4 flex justify-between">
-          <button classMame="primary-button">Next</button>
+          <button className="primary-button">Next</button>
         </div>
       </form>
     </Layout>
   );
 }
+ShippingScreen.auth = true;
