@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { Store } from '../utils/Store';
 import { toast } from 'react-toastify';
 import Cookies from 'js-cookie';
+import PlaceOrderScreen from './placeorder';
 
 export default function PaymentScreen() {
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState('');
@@ -73,3 +74,4 @@ export default function PaymentScreen() {
     </Layout>
   );
 }
+PlaceOrderScreen.auth = true;
