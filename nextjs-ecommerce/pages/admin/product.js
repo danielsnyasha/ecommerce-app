@@ -105,7 +105,7 @@ export default function AdminProdcutsScreen() {
             </li>
             <li>
               <Link href="/admin/products">
-                <a className="font-bold">Products</a>
+                <p className="font-bold">Products</p>
               </Link>
             </li>
             <li>
