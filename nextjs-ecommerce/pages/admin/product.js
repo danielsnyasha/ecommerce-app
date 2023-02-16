@@ -154,9 +154,9 @@ export default function AdminProdcutsScreen() {
                       <td className=" p-5 ">{product.rating}</td>
                       <td className=" p-5 ">
                         <Link href={`/admin/product/${product._id}`}>
-                          <a type="button" className="default-button">
+                          <p type="button" className="default-button">
                             Edit
-                          </a>
+                          </p>
                         </Link>
                         &nbsp;
                         <button
