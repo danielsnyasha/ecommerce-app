@@ -42,6 +42,7 @@ function reducer(state, action) {
       };
     case 'CART_CLEAR_ITEMS':
       return { ...state, cart: { ...state.cart, cartItems: [] } };
+
     case 'SAVE_SHIPPING_ADDRESS':
       return {
         ...state,
@@ -57,18 +58,15 @@ function reducer(state, action) {
       return {
         ...state,
         cart: {
-          ...state,
-          cart: {
-            ...state.cart,
-            shippingAddress: {},
-          },
+          ...state.cart,
+          paymentMethod: action.payload,
         },
       };
-
     default:
       return state;
   }
 }
+
 export function StoreProvider({ children }) {
   const [state, dispatch] = useReducer(reducer, initialState);
   const value = { state, dispatch };

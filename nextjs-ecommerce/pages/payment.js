@@ -1,12 +1,10 @@
-import Layout from '../components/Layout';
-import React, { useContext, useEffect } from 'react';
-import CheckoutWizard from '../components/CheckoutWizard';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
-import { Store } from '../utils/Store';
+import React, { useContext, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import Cookies from 'js-cookie';
-import PlaceOrderScreen from './placeorder';
+import CheckoutWizard from '../components/CheckoutWizard';
+import Layout from '../components/Layout';
+import { Store } from '../utils/Store';
 
 export default function PaymentScreen() {
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState('');
@@ -14,12 +12,13 @@ export default function PaymentScreen() {
   const { state, dispatch } = useContext(Store);
   const { cart } = state;
   const { shippingAddress, paymentMethod } = cart;
+
   const router = useRouter();
 
   const submitHandler = (e) => {
     e.preventDefault();
     if (!selectedPaymentMethod) {
-      toast.error('Payment method is required');
+      return toast.error('Payment method is required');
     }
     dispatch({ type: 'SAVE_PAYMENT_METHOD', payload: selectedPaymentMethod });
     Cookies.set(
@@ -32,16 +31,16 @@ export default function PaymentScreen() {
 
     router.push('/placeorder');
   };
-
   useEffect(() => {
     if (!shippingAddress.address) {
       return router.push('/shipping');
     }
     setSelectedPaymentMethod(paymentMethod || '');
   }, [paymentMethod, router, shippingAddress.address]);
+
   return (
     <Layout title="Payment Method">
-      <CheckoutWizard activeStep={2}></CheckoutWizard>
+      <CheckoutWizard activeStep={2} />
       <form className="mx-auto max-w-screen-md" onSubmit={submitHandler}>
         <h1 className="mb-4 text-xl">Payment Method</h1>
         {['PayPal', 'Stripe', 'CashOnDelivery'].map((payment) => (
@@ -74,4 +73,5 @@ export default function PaymentScreen() {
     </Layout>
   );
 }
-PlaceOrderScreen.auth = true;
+
+PaymentScreen.auth = true;
