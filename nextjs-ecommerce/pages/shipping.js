@@ -3,9 +3,9 @@ import React, { useContext, useEffect } from 'react';
 import CheckoutWizard from '../components/CheckoutWizard';
 import { useForm } from 'react-hook-form';
 import Cookies from 'js-cookie';
-import cart from './cart';
+
 import { Store } from '../utils/Store';
-import { Router, useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 
 export default function ShippingScreen() {
   const {

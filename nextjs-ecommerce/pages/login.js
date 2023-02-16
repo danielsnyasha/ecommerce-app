@@ -8,7 +8,7 @@ import { toast } from 'react-toastify';
 import { useRouter } from 'next/router';
 
 export default function LoginScreen() {
-  const { status, data: session } = useSession();
+  const { data: session } = useSession();
 
   const router = useRouter();
   const { redirect } = router.query;
