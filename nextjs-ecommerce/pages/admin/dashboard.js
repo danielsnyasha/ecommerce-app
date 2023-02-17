@@ -62,7 +62,6 @@ function AdminDashboardScreen() {
         dispatch({ type: 'FETCH_FAIL', payload: getError(err) });
       }
     };
-
     fetchData();
   }, []);
 
@@ -141,6 +140,5 @@ function AdminDashboardScreen() {
     </Layout>
   );
 }
-
 AdminDashboardScreen.auth = { adminOnly: true };
 export default AdminDashboardScreen;
